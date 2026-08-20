@@ -89,8 +89,10 @@ button {
     text-align: center;
 
     transition:
-        opacity 1s ease,
-        visibility 1s ease;
+        opacity 1.2s ease,
+        visibility 1.2s ease,
+        transform 1.2s ease,
+        filter 1.2s ease;
 }
 
 
@@ -101,6 +103,10 @@ button {
     visibility: hidden;
 
     pointer-events: none;
+
+    transform: scale(1.04);
+
+    filter: blur(8px);
 }
 
 
@@ -1567,4 +1573,510 @@ button {
         grid-auto-rows: 130px;
     }
 
+}
+
+/* =========================================================
+   ISLAMIC BACKGROUND PATTERN
+========================================================= */
+
+.hero-pattern,
+.section-pattern,
+.closing-pattern {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.035;
+
+    background-image:
+        linear-gradient(
+            30deg,
+            var(--green) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--green) 87.5%,
+            var(--green)
+        ),
+        linear-gradient(
+            150deg,
+            var(--green) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--green) 87.5%,
+            var(--green)
+        );
+
+    background-size: 60px 60px;
+
+    z-index: 0;
+}
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    opacity: 0;
+
+    transition: opacity 1s ease 1s;
+
+    color: var(--green);
+
+    z-index: 5;
+}
+
+
+.scroll-indicator.visible {
+
+    opacity: 1;
+}
+
+
+.scroll-indicator span {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+
+.scroll-arrow {
+
+    width: 32px;
+
+    height: 32px;
+
+    border: 1px solid var(--gold);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--gold);
+
+    animation: scrollBounce 2s infinite;
+}
+
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(8px);
+
+    }
+}
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.reveal.active {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================================
+   PREMIUM SCROLL REVEAL
+========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(45px)
+        scale(.98);
+
+    filter: blur(3px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.22, 1, .36, 1),
+        filter 1s ease;
+}
+
+
+.reveal.active {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    filter: blur(0);
+}
+
+/* =========================================================
+   STAGGERED ELEMENT ANIMATIONS
+========================================================= */
+
+.reveal.active .section-title {
+
+    animation: fadeUp .8s .1s both;
+}
+
+
+.reveal.active .section-label {
+
+    animation: fadeUp .7s both;
+}
+
+
+.reveal.active .gold-line {
+
+    animation: expandLine .8s .25s both;
+}
+
+
+.reveal.active .countdown-item {
+
+    animation: scaleIn .7s both;
+}
+
+
+.reveal.active .countdown-item:nth-child(1) {
+    animation-delay: .2s;
+}
+
+
+.reveal.active .countdown-item:nth-child(2) {
+    animation-delay: .35s;
+}
+
+
+.reveal.active .countdown-item:nth-child(3) {
+    animation-delay: .5s;
+}
+
+
+.reveal.active .countdown-item:nth-child(4) {
+    animation-delay: .65s;
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+}
+
+
+@keyframes expandLine {
+
+    from {
+
+        opacity: 0;
+
+        transform: scaleX(0);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scaleX(1);
+
+    }
+}
+
+
+@keyframes scaleIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(.7);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+}
+
+/* =========================================================
+   COUPLE NAME ANIMATION
+========================================================= */
+
+.couple-name {
+
+    opacity: 0;
+
+    animation: nameReveal 1.5s cubic-bezier(.22, 1, .36, 1) forwards;
+
+}
+
+
+.couple-name:nth-of-type(1) {
+
+    animation-delay: .5s;
+}
+
+
+.couple-name:nth-of-type(2) {
+
+    animation-delay: 1s;
+}
+
+
+@keyframes nameReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.95);
+
+        letter-spacing: 8px;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        letter-spacing: normal;
+
+    }
+}
+
+/* =========================================================
+   FALLING FLOWER PETALS
+========================================================= */
+
+.floating-particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+
+.petal {
+
+    position: absolute;
+
+    top: -30px;
+
+    width: 10px;
+
+    height: 15px;
+
+    background: #9E4545;
+
+    opacity: 0;
+
+    border-radius: 70% 30% 70% 30%;
+
+    animation:
+        petalFall
+        var(--duration)
+        linear
+        var(--delay)
+        infinite;
+
+    transform:
+        rotate(var(--rotation));
+
+    filter: drop-shadow(
+        0 2px 2px rgba(0, 0, 0, .08)
+    );
+}
+
+
+@keyframes petalFall {
+
+    0% {
+
+        transform:
+            translate3d(0, -30px, 0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    10% {
+
+        opacity: .7;
+
+    }
+
+    25% {
+
+        transform:
+            translate3d(var(--drift-1), 25vh, 0)
+            rotate(90deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate3d(var(--drift-2), 50vh, 0)
+            rotate(180deg);
+
+    }
+
+    75% {
+
+        transform:
+            translate3d(var(--drift-3), 75vh, 0)
+            rotate(270deg);
+
+        opacity: .5;
+
+    }
+
+    100% {
+
+        transform:
+            translate3d(var(--drift-4), 110vh, 0)
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+}
+
+/* =========================================================
+   FLORAL DECORATIONS - TEMPORARY
+========================================================= */
+
+.floral-decoration {
+    position: absolute;
+    z-index: 1;
+    color: var(--green);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.floral-decoration span {
+    display: block;
+    color: var(--green);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.floral-top-left {
+    top: 40px;
+    left: 30px;
+}
+
+.floral-top-right {
+    top: 60px;
+    right: 40px;
+}
+
+.floral-bottom-left {
+    bottom: 50px;
+    left: 40px;
+}
+
+.floral-bottom-right {
+    bottom: 40px;
+    right: 30px;
+}
+
+@media (max-width: 768px) {
+
+    .floral-top-left {
+        top: 30px;
+        left: 15px;
+    }
+
+    .floral-top-right {
+        top: 40px;
+        right: 15px;
+    }
+
+    .floral-bottom-left {
+        bottom: 30px;
+        left: 15px;
+    }
+
+    .floral-bottom-right {
+        bottom: 25px;
+        right: 15px;
+    }
+
+    .floral-decoration span {
+        font-size: 1.4rem;
+    }
 }

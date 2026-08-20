@@ -15,6 +15,21 @@ enterButton.addEventListener("click", () => {
 
     document.body.style.overflow = "auto";
 
+
+    /*
+     * Show the scroll indicator
+     * after the opening animation.
+     */
+
+    setTimeout(() => {
+
+        const scrollIndicator =
+            document.getElementById("scrollIndicator");
+
+        scrollIndicator.classList.add("visible");
+
+    }, 900);
+
 });
 
 
@@ -35,7 +50,7 @@ enterButton.addEventListener("click", () => {
 */
 
 const weddingDate =
-    new Date("2026-09-20T00:00:00").getTime();
+    new Date("2026-09-20T10:30:00+05:30").getTime();
 
 
 function updateCountdown() {
@@ -192,3 +207,93 @@ sections.forEach((section) => {
     sectionObserver.observe(section);
 
 });
+
+/* =========================================================
+   FALLING FLOWER PETALS
+========================================================= */
+
+const petalContainer =
+    document.getElementById("floatingParticles");
+
+
+function createPetals() {
+
+    const petalCount =
+        window.innerWidth < 600 ? 14 : 24;
+
+
+    for (let i = 0; i < petalCount; i++) {
+
+        const petal =
+            document.createElement("span");
+
+
+        petal.classList.add("petal");
+
+
+        petal.style.left =
+            `${Math.random() * 100}%`;
+
+
+        petal.style.setProperty(
+            "--duration",
+            `${9 + Math.random() * 9}s`
+        );
+
+
+        petal.style.setProperty(
+            "--delay",
+            `${Math.random() * 10}s`
+        );
+
+
+        petal.style.setProperty(
+            "--rotation",
+            `${Math.random() * 360}deg`
+        );
+
+
+        petal.style.setProperty(
+            "--drift-1",
+            `${-80 + Math.random() * 160}px`
+        );
+
+
+        petal.style.setProperty(
+            "--drift-2",
+            `${-120 + Math.random() * 240}px`
+        );
+
+
+        petal.style.setProperty(
+            "--drift-3",
+            `${-100 + Math.random() * 200}px`
+        );
+
+
+        petal.style.setProperty(
+            "--drift-4",
+            `${-150 + Math.random() * 300}px`
+        );
+
+
+        const size =
+            7 + Math.random() * 7;
+
+
+        petal.style.width =
+            `${size}px`;
+
+
+        petal.style.height =
+            `${size * 1.4}px`;
+
+
+        petalContainer.appendChild(petal);
+
+    }
+
+}
+
+
+createPetals();
