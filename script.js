@@ -219,7 +219,7 @@ const petalContainer =
 function createPetals() {
 
     const petalCount =
-        window.innerWidth < 600 ? 14 : 24;
+        window.innerWidth < 600 ? 8 : 14;
 
 
     for (let i = 0; i < petalCount; i++) {
@@ -297,47 +297,19 @@ function createPetals() {
 
 
 createPetals();
-
-/* =========================================================
-   SUBTLE SECTION PARALLAX
-========================================================= */
-
-const parallaxSections =
-    document.querySelectorAll(
-        ".hero, .countdown-section, .closing-section"
-    );
-
-
-window.addEventListener(
-    "scroll",
+document.addEventListener(
+    "visibilitychange",
     () => {
 
-        parallaxSections.forEach((section) => {
+        if (document.hidden) {
 
-            const rect =
-                section.getBoundingClientRect();
+            petalContainer.style.display = "none";
 
+        } else {
 
-            const pattern =
-                section.querySelector(
-                    ".hero-pattern, .section-pattern, .closing-pattern"
-                );
+            petalContainer.style.display = "block";
 
+        }
 
-            if (!pattern) {
-                return;
-            }
-
-
-            const distance =
-                rect.top / window.innerHeight;
-
-
-            pattern.style.transform =
-                `translateY(${distance * 35}px)`;
-
-        });
-
-    },
-    { passive: true }
+    }
 );
