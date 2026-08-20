@@ -36,6 +36,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 body {
@@ -308,11 +309,16 @@ button {
 
     position: relative;
 
+    min-height: 100svh;
+
     padding: 110px 20px;
 
     overflow: hidden;
-}
 
+    scroll-snap-align: start;
+
+    scroll-snap-stop: normal;
+}
 
 .container {
 
@@ -1378,11 +1384,16 @@ button {
 
     opacity: 0;
 
-    transform: translateY(40px);
+    transform:
+        translateY(55px)
+        scale(.97);
+
+    filter: blur(4px);
 
     transition:
         opacity 1s ease,
-        transform 1s ease;
+        transform 1.1s cubic-bezier(.22, 1, .36, 1),
+        filter 1s ease;
 }
 
 
@@ -1390,7 +1401,11 @@ button {
 
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translateY(0)
+        scale(1);
+
+    filter: blur(0);
 }
 
 

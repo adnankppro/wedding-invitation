@@ -297,3 +297,47 @@ function createPetals() {
 
 
 createPetals();
+
+/* =========================================================
+   SUBTLE SECTION PARALLAX
+========================================================= */
+
+const parallaxSections =
+    document.querySelectorAll(
+        ".hero, .countdown-section, .closing-section"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        parallaxSections.forEach((section) => {
+
+            const rect =
+                section.getBoundingClientRect();
+
+
+            const pattern =
+                section.querySelector(
+                    ".hero-pattern, .section-pattern, .closing-pattern"
+                );
+
+
+            if (!pattern) {
+                return;
+            }
+
+
+            const distance =
+                rect.top / window.innerHeight;
+
+
+            pattern.style.transform =
+                `translateY(${distance * 35}px)`;
+
+        });
+
+    },
+    { passive: true }
+);
